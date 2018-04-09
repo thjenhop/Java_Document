@@ -1,0 +1,60 @@
+
+#include <iostream>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+int pro(string x);
+
+int ucln(int a, int b);
+
+int main()
+{
+    string x;
+
+    cin >> x;
+    int a = 10, b = 5;
+    //cout << ucln(a, b);
+    pro(x);
+    return 0;
+}
+int pro(string x)
+{
+    int temp = 0;
+    vector<int> arr;
+    int j;
+    for(j = 0; j < x.length(); j++)
+    {
+        if(x[j] > 47 && x[j] < 58)
+        {
+            temp =  temp * 10 + (x[j] - 48);
+            if(j == x.length() - 1)
+            {
+                arr.push_back(x[j] - 48);
+                cout << x[j] - 48 << " ";
+
+            }
+        }
+        if((x[j] < 48 || x[j] > 57) && (x[j - 1]  > 47 && x[j - 1] < 58))
+        {
+            arr.push_back(temp);
+            cout << temp << " ";
+            temp = 0;
+
+        }
+
+    }
+    cout << endl;
+    int n  = arr.size();
+    temp = ucln(arr[0], arr[1]);
+    for(int i = 2; i < n; i++)
+    {
+        temp = ucln(temp, arr[i]);
+    }
+    cout << temp;
+
+}
+int ucln(int a, int b)
+{
+    return b == 0 ? a : ucln(b, a % b);
+}
