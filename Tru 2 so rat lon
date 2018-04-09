@@ -1,0 +1,37 @@
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string tru(string &x, string &y);
+
+int main()
+{
+    string x,y;
+
+    cin >> x >> y;
+
+    cout << tru(x, y);
+
+    return 0;
+}
+string tru(string &x, string &y)
+{
+    int n = x.length();
+
+    int i;
+    for(i = n - 1; i >= 0; i--)
+    {
+        if(x[i] < y[i])
+        {
+            y[i] = 10 + x[i] - y[i] + 48 ;
+            x[i - 1] -= 1;
+        }
+        else
+        {
+            y[i] = x[i] - y[i] + 48;
+        }
+    }
+    return y;
+}
