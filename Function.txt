@@ -1,0 +1,21 @@
+class Solustion
+{
+public:
+    int searchInsert(vector<int> &nums, int taget)
+    {
+        int i;
+        for(i = 0; i < nums.size(); i++)
+        {
+            if(nums.at(i) == taget)
+            {
+                return i;
+            }
+            if(nums.at(i) > taget)
+            {
+                return i;
+            }
+        }
+        return i;
+    }
+};
+
