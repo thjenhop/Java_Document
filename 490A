@@ -1,0 +1,72 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+bool check(std::vector<int>& v);
+int pos(std::vector<int>& v, const int a);
+
+int main()
+{
+    int n;
+    std::cin >> n;
+    std::vector<int> v;
+    int arr[4] = {0};
+    for(int i = 0; i < n ; i++)
+    {
+        int temp;
+        std::cin >> temp;
+        arr[temp]++;
+        v.push_back(temp);
+      //  std::cout << v[i] << " ";
+    }
+    //std::cout << "\n";
+    //std::cout << arr[1] << " " << arr[2] << " " << arr[3];
+    int temp = arr[1]  < arr[2] ? arr[1] : arr[2];
+    temp = temp < arr[3] ? temp : arr[3];
+    std::cout << temp << std::endl;
+    while(check(v))
+    {
+        std::cout << pos(v, 1) << " " << pos(v, 2) << " " << pos(v, 3) << std::endl;
+    }
+    //std::cout << std::endl;
+    return 0;
+
+
+}
+int pos(std::vector<int>& v,const int a)
+{
+    auto i = v.find(a);
+    if(i != v.end())
+    {
+        *i = 0;
+        int index = 0;
+        while(auto temp = v.begin(); temp != i; temp++)
+        {
+            index++;
+        }
+        return i + 1;
+    }
+        
+
+}
+bool check(std::vector<int>& v)
+{
+    int count[3] = {0};
+    for(int i = 0; i < v.size(); i++)
+    {
+
+        if(v[i] == 1)
+        {
+            count[0]++;
+        }
+        if(v[i] == 2)
+        {
+            v[1]++;
+        }
+        if(v[i] == 3)
+        {
+            v[2]++;
+        }
+    }
+    return (v[0] && v[1] && v[2] );
+}
